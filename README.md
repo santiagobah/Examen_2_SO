@@ -18,3 +18,7 @@
 
 ### Esta fue por mucho la parte difícil del examen 
 
+### Prueba de la segunda parte del examen funcionando:
+
+![Parte2](Imagit/P2EX.png)
+![Parte2.1](Imagit/P2EX.1.png)
