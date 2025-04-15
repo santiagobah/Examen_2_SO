@@ -18,4 +18,4 @@
 
 ### Prueba de la segunda parte del examen funcionando:
 
-![Parte1](imagit/P1EX.png)
+![Parte1](Imagit/P1EX.png)
