@@ -10,12 +10,11 @@
 - [https://docs.docker.com/reference/dockerfile/#example-running-a-multi-line-script](https://docs.docker.com/reference/dockerfile/#example-running-a-multi-line-script)
 - [https://docs.godotengine.org/en/stable/contributing/development/compiling/compiling_for_linuxbsd.html](https://docs.godotengine.org/en/stable/contributing/development/compiling/compiling_for_linuxbsd.html)
 
+### Prueba de la primera parte del examen funcionando:
+
+![Parte1](Imagit/P1EX.png)
+
 ## Segunda parte del examen 
 
 ### Esta fue por mucho la parte difícil del examen 
 
-
-
-### Prueba de la segunda parte del examen funcionando:
-
-![Parte1](Imagit/P1EX.png)
