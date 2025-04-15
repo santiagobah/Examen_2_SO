@@ -1,0 +1,64 @@
+version: '3.8' # Usa una versión reciente de Docker Compose
+
+services:
+  # Servicio de Base de Datos (PostgreSQL)
+  db:
+    image: postgres:15-alpine # Usa una versión específica de Postgres
+    container_name: postgres_db
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-user} # Usa variables de entorno o valores por defecto
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-password}
+      POSTGRES_DB: ${POSTGRES_DB:-mydatabase}
+    volumes:
+      - db_data:/var/lib/postgresql/data # Volumen persistente para los datos
+    ports:
+      # Mapea el puerto 5432 del contenedor al 5433 del host (para evitar conflictos si tienes otro Postgres local)
+      # Puedes usar "5432:5432" si el puerto 5432 del host está libre
+      - "5433:5432"
+    networks:
+      - app-network # Conectar a la red personalizada
+    restart: always # Reiniciar siempre si falla
+
+  # Servicio Backend (API Go)
+  backend:
+    build:
+      context: ./go-api # Directorio donde está el Dockerfile de Go
+      dockerfile: Dockerfile
+    container_name: go_api_service
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-password}
+      POSTGRES_DB: ${POSTGRES_DB:-mydatabase}
+      DB_HOST: db # Nombre del servicio de la base de datos dentro de la red Docker
+    ports:
+      # Mapea el puerto 8080 del contenedor al 8080 del host
+      - "8080:8080"
+    depends_on:
+      - db # Espera a que el servicio 'db' esté iniciado (no garantiza que esté listo)
+    networks:
+      - app-network
+    restart: on-failure # Reiniciar solo si falla
+
+  # Servicio Frontend (React + Nginx)
+  frontend:
+    build:
+      context: ./react-frontend # Directorio donde está el Dockerfile de React
+      dockerfile: Dockerfile
+    container_name: react_frontend_service
+    ports:
+      # Mapea el puerto 80 del contenedor (Nginx) al puerto 3000 del host
+      - "3000:80"
+    depends_on:
+      - backend # Espera a que el servicio 'backend' esté iniciado
+    networks:
+      - app-network
+    restart: on-failure
+
+# Definición de Volúmenes
+volumes:
+  db_data: # Volumen nombrado para persistencia de datos de la DB
+
+# Definición de Redes
+networks:
+  app-network: # Red personalizada para que los contenedores se comuniquen por nombre de servicio
+    driver: bridge
