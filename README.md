@@ -21,4 +21,11 @@
 ### Prueba de la segunda parte del examen funcionando:
 
 ![Parte2](Imagit/P2EX.png)
+
 ![Parte2.1](Imagit/P2EEX.png)
+
+### Aquí podemos ver cómo es que se ejecuta el proyecto, lo único que hay que hacer es escribir en terminal en la carpeta principal del proyecto "docker compose up --build" y el proyecto se ejecutará solito para después acceder a localhost:3000 donde veremos cómo es que se levantó ya todo el proyecto.
+
+## Cierre
+
+### Definitivamente lo difícil de este examen fue todo el tema de programacion pero también temas relativamente más sencillos como instalar docker compose y dejar de usar docker-compose que se basa en Python (o algo así por lo que entendí) y tiende a fallar demasiado. En conclusión, considero que el examen fue difícil pero resume e integra los conocimientos del parcial de una forma interesante.
